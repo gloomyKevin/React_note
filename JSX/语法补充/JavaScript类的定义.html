@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // ES5中如何定义类
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype.running = function () {
+            // 此处的this为隐式绑定,因为p调用running,所以this指向p
+            console.log(this.name, this.age, "running");
+        }
+
+        var p = new Person("kevin", 18);
+        console.log(p.name, p.age);
+        p.running();
+
+        // ES6中通过class创建类
+        class Person2 {
+            // 构造方法
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            // 定义方法
+            running2() {
+                console.log(this.name, this.age, "running");
+            }
+        }
+
+        const p2 = new Person2("kevin", 18);
+        console.log(p2.name, p2.age);
+        p2.running2();
+
+        // 思考
+        // 此时会报错,this的指向为undefined
+        let func = p2.running2;
+        func();
+
+        var obj = {
+            name: "other",
+            age: 40
+        }
+        func.call(obj);
+
+        // 或者重新给func赋值
+        func = func.bind(obj);
+        func();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 存在大量冗余代码的情况
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            running() {
+                console.log(this.name, this.age, "running");
+            }
+        }
+
+        // class Student {
+        //     constructor(name, age, sno, score) {
+        //         this.name = name;
+        //         this.age = age;
+        //         this.sno = sno;
+        //         this.score = score;
+        //     }
+
+        //     running() {
+        //         console.log(this.name, this.age, "running");
+        //     }
+
+        //     studying() {
+        //         console.log(this.name, this.age, this.sno, this.score, "studing");
+        //     }
+        // }
+
+        // 使用继承
+        // 构造器中有继承,则必须调用super(),用于初始化父类对象
+        class Student extends Person {
+            constructor(name, age, sno) {
+                super(name, age);
+                this.sno = sno;
+            }
+            // running会自动继承
+        }
+        const stu = new Student("kevin", 18, 101);
+        console.log(stu.name, stu.age, stu.sno);
+        sty.running();
+
+        class teacher extends Person {
+            constructor(name, age, title) {
+                super(name, age);
+                this.title = title;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

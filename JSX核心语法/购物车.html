@@ -32,21 +32,21 @@
                             count: 2
                         },
                         {
-                            id: 1,
+                            id: 2,
                             name: "<算法导论>",
                             date: "2006-9",
                             price: 85,
                             count: 2
                         },
                         {
-                            id: 1,
+                            id: 3,
                             name: "<算法导论>",
                             date: "2006-9",
                             price: 85,
                             count: 2
                         },
                         {
-                            id: 1,
+                            id: 4,
                             name: "<算法导论>",
                             date: "2006-9",
                             price: 85,
@@ -69,6 +69,34 @@
                 }, 0);
 
                 return this.formatPrice(totalPrice);
+            }
+
+            remove(index) {
+                // console.log(index);
+                this.setState({
+                    books: this.state.books.filter((item, indey) => {
+                        if (index != indey) {
+                            return true;
+                        }
+                    })
+                })
+            }
+
+            increment(index) {
+                console.log(1);
+                const newBooks = [...this.state.books];
+                newBooks[index].count += 1
+                this.setState({
+                    count: newBooks
+                })
+            }
+
+            decrement(index) {
+                const newBooks = [...this.state.books];
+                newBooks[index].count -= 1;
+                this.setState({
+                    count: newBooks
+                })
             }
 
             render() {
@@ -95,12 +123,12 @@
                                                 <td>{item.date}</td>
                                                 <td>{this.formatPrice(item.price)}</td>
                                                 <td>
-                                                    <button>-</button>
+                                                    <button onClick={e => this.increment(index)}>+</button>
                                                     <span>{item.count}</span>
-                                                    <button>+</button>
+                                                    <button disabled={item.count <= 1} onClick={e => this.decrement(index)}>-</button>
                                                 </td>
                                                 <td>
-                                                    <button>删除</button>
+                                                    <button onClick={e => this.remove(index)}>删除</button>
                                                 </td>
                                             </tr>
                                         )
